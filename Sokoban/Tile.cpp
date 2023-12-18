@@ -13,6 +13,12 @@ Tile::Tile(char c)
 	case '_':
 		type = tileType::floor;
 		break;
+	case 'O':
+		type = tileType::barrel;
+		break;
+	case 'x':
+		type = tileType::goal;
+		break;
 
 	default:
 		type = tileType::wall;
@@ -32,6 +38,12 @@ std::ostream& operator<<(std::ostream& os, const Tile tile)
 		break;
 	case Tile::tileType::floor:
 		os << ' ';
+		break;
+	case Tile::tileType::barrel:
+		os << 'O';
+		break;
+	case Tile::tileType::goal:
+		os << 'x';
 		break;
 	}
 

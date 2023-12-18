@@ -11,7 +11,7 @@ public:
 		wall,
 		floor,
 		goal,
-		barre,
+		barrel,
 		player
 	};
 

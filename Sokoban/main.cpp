@@ -32,6 +32,7 @@ int main()
 		case 'd':
 			player->move(Direction::right, 1);
 			break;
+
 		default:
 			break;
 		}

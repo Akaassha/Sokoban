@@ -10,6 +10,7 @@ Map::Map(std::string filename)
 
 	width = stoi(map_data[0]);
 	height = stoi(map_data[1]);
+	Game& game = Game::GetGame();
 
 	Tiles = new Tile * [width * height];
 
@@ -21,10 +22,16 @@ Map::Map(std::string filename)
 			Tiles[y][x] = Tile(map_data[y + 2][x]);
 			if (Tiles[y][x].type == Tile::tileType::player)
 			{
-				player = new Player(y, x);
-				Game& game = Game::GetGame();
+				player = new Player(x, y);
+				
 				game.map = this;
 				game.player = player;
+			}
+
+			if (Tiles[y][x].type == Tile::tileType::goal)
+			{
+				game.goals.push_back(std::pair<int, int>(x, y));
+				//Tiles[y][x].type = Tile::tileType::floor;
 			}
 		}
 	}
@@ -79,4 +86,9 @@ const Tile& Map::GetTile(int x, int y)
 void Map::swapTails(int Tile1_x, int Tile1_y, int Tile2_x, int Tile2_y)
 {
 	std::swap(Tiles[Tile1_y][Tile1_x], Tiles[Tile2_y][Tile2_x]);
+}
+
+void Map::SetTile(int x, int y, Tile::tileType type)
+{
+	Tiles[y][x].type = type;
 }
