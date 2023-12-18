@@ -7,13 +7,35 @@
 
 using namespace std;
 
+bool checkWin()
+{
+	auto goals = Game::GetGame().goals;
+	auto map = Game::GetGame().map;
+	int goalsAmount = goals.size();
+	int checked = 0;
+
+	for (auto goal : goals)
+	{
+		if (map->GetTile(goal.first, goal.second).type == Tile::tileType::barrel)
+		{
+			checked++;
+		}
+	}
+
+	if (checked == goalsAmount)
+		return false;
+	else
+		return true;
+		
+}
+
 int main()
 {
 	Map map("TestMap.txt");
 	Player* player = Game::GetGame().player;
 
 	char input;
-	while (true)
+	while (checkWin())
 	{
 		map.draw();
 
@@ -37,4 +59,8 @@ int main()
 			break;
 		}
 	}
+
+	map.draw();
+	cout << endl;
+	cout << "you have won!!";
 }

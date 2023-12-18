@@ -31,7 +31,6 @@ Map::Map(std::string filename)
 			if (Tiles[y][x].type == Tile::tileType::goal)
 			{
 				game.goals.push_back(std::pair<int, int>(x, y));
-				//Tiles[y][x].type = Tile::tileType::floor;
 			}
 		}
 	}
