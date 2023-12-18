@@ -10,6 +10,9 @@ Tile::Tile(char c)
 	case '%':
 		type = tileType::player;
 		break;
+	case '_':
+		type = tileType::floor;
+		break;
 
 	default:
 		type = tileType::wall;
@@ -26,6 +29,9 @@ std::ostream& operator<<(std::ostream& os, const Tile tile)
 		break;
 	case Tile::tileType::player:
 		os << '%';
+		break;
+	case Tile::tileType::floor:
+		os << ' ';
 		break;
 	}
 
